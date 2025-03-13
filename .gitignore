@@ -43,3 +43,4 @@ testem.log
 Thumbs.db
 .npmrc # Igno
 .npmrc # Ignore .npmrc to prevent future commits
+..npmrc
