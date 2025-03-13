@@ -1,9 +1,6 @@
 {
   "name": "@bassemkassis/adad-keycloak-angular",
-  "version": "1.0.1",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
+  "version": "1.0.5",
   "description": "Easy Keycloak setup for Angular applications",
   "scripts": {
     "clean": "shx rm -rf ./dist/",
