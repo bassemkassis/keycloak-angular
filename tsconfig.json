@@ -2,20 +2,25 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "module": "es2020",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strictPropertyInitialization": false,
     "outDir": "./dist/out-tsc",
     "esModuleInterop": true,
-    "sourceMap": true,
-    "declaration": true,
-    "moduleResolution": "bundler",
-    "experimentalDecorators": true,
-    "target": "ES2022",
+    "strict": false,
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "dom"],
     "paths": {
       "keycloak-angular": ["dist/keycloak-angular"]
     },
-    "skipLibCheck": true,
     "useDefineForClassFields": false
   }
 }
