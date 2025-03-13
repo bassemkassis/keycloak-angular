@@ -11,13 +11,9 @@ import { HttpHeaders, HttpRequest } from '@angular/common/http';
 
 import { Subject, from } from 'rxjs';
 import { map } from 'rxjs/operators';
-import Keycloak from 'keycloak-js';
+import Keycloak from 'keycloak-js/lib/keycloak';
 
-import {
-  ExcludedUrl,
-  ExcludedUrlRegex,
-  KeycloakOptions
-} from '../interfaces/keycloak-options';
+import { ExcludedUrl, ExcludedUrlRegex, KeycloakOptions } from '../interfaces/keycloak-options';
 import { KeycloakEvent, KeycloakEventType } from '../interfaces/keycloak-event';
 
 /**
@@ -67,8 +63,7 @@ export class KeycloakService {
   /**
    * Observer for the keycloak events
    */
-  private _keycloakEvents$: Subject<KeycloakEvent> =
-    new Subject<KeycloakEvent>();
+  private _keycloakEvents$: Subject<KeycloakEvent> = new Subject<KeycloakEvent>();
   /**
    * The amount of required time remaining before expiry of the token before the token will be refreshed.
    */
@@ -145,9 +140,7 @@ export class KeycloakService {
    * @param bearerExcludedUrls array of strings or ExcludedUrl that includes
    * the url and HttpMethod.
    */
-  private loadExcludedUrls(
-    bearerExcludedUrls: (string | ExcludedUrl)[]
-  ): ExcludedUrlRegex[] {
+  private loadExcludedUrls(bearerExcludedUrls: (string | ExcludedUrl)[]): ExcludedUrlRegex[] {
     const excludedUrls: ExcludedUrlRegex[] = [];
     for (const item of bearerExcludedUrls) {
       let excludedUrl: ExcludedUrlRegex;
@@ -305,9 +298,7 @@ export class KeycloakService {
    * @returns
    * A void Promise if the register flow was successful.
    */
-  public async register(
-    options: Keycloak.KeycloakLoginOptions = { action: 'register' }
-  ) {
+  public async register(options: Keycloak.KeycloakLoginOptions = { action: 'register' }) {
     await this._instance.register(options);
   }
 
@@ -410,9 +401,7 @@ export class KeycloakService {
     // is not implemented, avoiding the redirect loop.
     if (this._silentRefresh) {
       if (this.isTokenExpired()) {
-        throw new Error(
-          'Failed to refresh the token, or the session is expired'
-        );
+        throw new Error('Failed to refresh the token, or the session is expired');
       }
 
       return true;
@@ -445,9 +434,7 @@ export class KeycloakService {
     }
 
     if (!this._instance.authenticated) {
-      throw new Error(
-        'The user profile was not loaded as the user is not logged in.'
-      );
+      throw new Error('The user profile was not loaded as the user is not logged in.');
     }
 
     return (this._userProfile = await this._instance.loadUserProfile());
@@ -495,14 +482,7 @@ export class KeycloakService {
    */
   public addTokenToHeader(headers: HttpHeaders = new HttpHeaders()) {
     return from(this.getToken()).pipe(
-      map((token) =>
-        token
-          ? headers.set(
-              this._authorizationHeaderName,
-              this._bearerPrefix + token
-            )
-          : headers
-      )
+      map((token) => (token ? headers.set(this._authorizationHeaderName, this._bearerPrefix + token) : headers))
     );
   }
 

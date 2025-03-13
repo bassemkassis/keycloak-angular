@@ -11,14 +11,7 @@ import { HttpRequest } from '@angular/common/http';
 /**
  * HTTP Methods
  */
-export type HttpMethods =
-  | 'GET'
-  | 'POST'
-  | 'PUT'
-  | 'DELETE'
-  | 'OPTIONS'
-  | 'HEAD'
-  | 'PATCH';
+export type HttpMethods = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'PATCH';
 
 /**
  * ExcludedUrl type may be used to specify the url and the HTTP method that
